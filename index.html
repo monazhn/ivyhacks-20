@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>mybrary</title>
+    <link href="style.css" rel="stylesheet"  />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="41446317113-7fn70pdl3qvt6qij1ktmui1ggp1t5cns.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+  </head>
+  <body>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      }
+    </script>
+  </body>
+
+</html>
+	
+  
+<!--Code for determining if user is active or not-->
+<div class = 'welcome'>
+  Welcome to mybrary
+</div>
+
+<div class='time'>
+ Seconds : <div id='seconds'></div>
+</div>
+
+<button class="button startbutton">Start Studying</button>
+
+
+<div class = "dontbeselfish-takesomeshelves, sis">
+<div class= "shelves" div style="width:1152x;height:31px;border:0px"></div>
+<img src = "book_icons/blue_book_front.png" width = "75" height = "75">
+<img src = "book_icons/red_book_front.png" width = "75" height = "75">
+<img src = "book_icons/green_book_front.png" width = "75" height = "75">
+
+<div class= "shelves" div style="width:1152x;height:31px;border:0px"></div>
+<div class = "shelfdivider"></div>
+<div class= "shelves" div style="width:1152x;height:31px;border:0px"></div>
+<div class = "shelfdivider"></div>
+<div class= "shelves" div style="width:1152x;height:31px;border:0px"></div>
+<div class = "shelfdivider"></div>
+<div class= "shelves" div style="width:1152x;height:31px;border:0px"></div>
+<div class = "shelfdivider"></div>
+<div class= "shelves" div style="width:1152x;height:31px;border:0px"></div>
+<div class = "shelfdivider"></div>
+<div class= "shelves" div style="width:1152x;height:31px;border:0px"></div>
+<div class = "shelfdivider"></div>
+<div class= "shelves" div style="width:1152x;height:31px;border:0px"></div>
+<div class = "shelfdivider"></div>
+<div class= "shelves" div style="width:1152x;height:31px;border:0px"></div>
+</div>
+
+
+
+<!-- Script -->
+<script type='text/javascript'>
+ 
+ var count = 0;
+ var isFocused = -1;
+ var myInterval;
+ // Active
+ window.addEventListener('focus', startTimer);
+
+ // Inactive
+ window.addEventListener('blur', stopTimer);
+
+ function timerHandler() {
+  count++;
+  var date = new Date(0)
+  date.setSeconds(count)
+  var timeString = date.toISOString().substr(11, 8);
+  document.getElementById("seconds").innerHTML = timeString;
+ }
+
+ // Start timer
+ function startTimer() {
+  console.log('focus');
+  myInterval = window.setInterval(timerHandler, 1000);
+  isFocused = 1;
+ }
+
+ // Stop timer
+ function stopTimer() {
+  window.clearInterval(myInterval);
+  addBook();
+ }
+
+ function addBook(){
+
+ }
+
+</script>
